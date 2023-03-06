@@ -1,0 +1,18 @@
+<h1>Recipes</h1>
+
+<%= form_tag(recipes_path, method: :get) do %>
+  <%= text_field_tag(:query, params[:query], placeholder: 'Enter list of comma-separated ingredients that you have', size: 100) %>
+  <%= submit_tag('Find recipes') %>
+<% end %>
+
+<% if @recipes_hashes.present? %>
+  <% @recipes_hashes.each do |recipe| %>
+    <div>
+      <h1> <%= recipe[:title] %> </h1>
+      <p> <%= recipe[:ratings] %> </p>
+      <p> <%= recipe[:ingredients] %> </p>
+    </div>
+  <% end %>
+<% else %>
+  <p> No recipes found for provided ingredients</p>
+<% end %>
